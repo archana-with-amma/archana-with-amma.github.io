@@ -232,6 +232,9 @@ app.controller("TestCtrl", [
       "listToLearn": verses.data.listToLearn,
       "listOfMeaning": verses.data.listOfMeaning
     };
+    if (storage[id] == null) {
+      storage[id] = {};
+    }
     for (k in defaults) {
       v = defaults[k];
       if (storage[id][k] == null) {
