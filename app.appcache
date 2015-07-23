@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Time: Thu Jul 23 2015 00:42:28 GMT-0500 (CDT)
+# Time: Thu Jul 23 2015 00:50:46 GMT-0500 (CDT)
 
 
 CACHE:
@@ -8,6 +8,7 @@ http://fonts.gstatic.com/s/sourcecodepro/v6/mrl8jkM18OlOQN8JLgasDy2Q8seG17bfDXYR
 http://fonts.gstatic.com/s/sourcecodepro/v6/mrl8jkM18OlOQN8JLgasD9V_2ngZ8dMf8fLgjYEouxg.woff2
 amma.css
 amma.js
+favicon.ico
 index.html
 lib.js
 img/1000-stotram.jpg
@@ -22,6 +23,11 @@ img/durga.jpg
 img/feet.jpg
 img/flower-bg.jpg
 img/pada-puja.jpg
+templates/howto.template.html
+templates/item-lister.template.html
+templates/learn.template.html
+templates/results.template.html
+templates/test.template.html
 learn/1000-stotram.json
 learn/1000.json
 learn/108.json
@@ -30,11 +36,6 @@ learn/index.json
 learn/sri-mahisasuramardini-stotram.json
 learn/test.json
 learn/test2.json
-templates/howto.template.html
-templates/item-lister.template.html
-templates/learn.template.html
-templates/results.template.html
-templates/test.template.html
 
 
 NETWORK:
