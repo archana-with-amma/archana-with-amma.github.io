@@ -111,7 +111,6 @@ html {
   -ms-user-select: none;
   -o-user-select: none;
   user-select: none;
-  word-break: break-all;
   word-wrap: break-word;
 }
 
