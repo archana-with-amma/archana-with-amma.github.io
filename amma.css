@@ -238,6 +238,35 @@ html {
   height: 70%;
   margin: auto;
 }
+
+/*
+.qa-inner-container.ng-enter {
+  -webkit-animation: enter_sequence 1s linear; 
+  animation: enter_sequence 1s linear; 
+}
+@-webkit-keyframes enter_sequence {
+  from { opacity:0; }
+  to { opacity:1; }
+}
+@keyframes enter_sequence {
+  from { opacity:0; }
+  to { opacity:1; }
+}
+
+.qa-inner-container.ng-leave {
+  -webkit-animation: leave_sequence 1s linear; 
+  animation: leave_sequence 1s linear; 
+}
+@-webkit-keyframes leave_sequence {
+  from { opacity:1; }
+  to { opacity:0; }
+}
+@keyframes leave_sequence {
+  from { opacity:1; }
+  to { opacity:0; }
+}*/
+
+
 .question{
   border-bottom: 1px solid #eee;
 }
@@ -269,4 +298,31 @@ html {
   margin-top: 50px;
   color: #eee;
   font-size: 2em;
+}
+
+
+
+.slide-and-fade-up.ng-enter {
+  opacity: 0;
+  -webkit-transform: translateY(100%);
+  transform: translateY(100%);
+  transition: -webkit-transform .25s, opacity .25s;
+  transition: transform .25s, opacity .25s;
+}
+.slide-and-fade-up.ng-enter.ng-enter-active {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+}
+.slide-and-fade-up.ng-leave {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+  transition: -webkit-transform .25s, opacity .25s;
+  transition: transform .25s, opacity .25s;
+}
+.slide-and-fade-up.ng-leave.ng-leave-active {
+  opacity: 0;
+  -webkit-transform: translateY(-100%);
+  transform: translateY(-100%);
 }

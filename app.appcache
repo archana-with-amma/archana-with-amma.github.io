@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Time: Thu Jul 23 2015 14:14:28 GMT-0500 (CDT)
+# Time: Mon Jul 27 2015 12:40:58 GMT-0500 (CDT)
 
 
 CACHE:
@@ -11,6 +11,8 @@ amma.js
 favicon.ico
 index.html
 lib.js
+audio/108.json
+audio/108.mp3
 img/1000-stotram.jpg
 img/1000.jpg
 img/108-english.jpg
