@@ -1,11 +1,9 @@
 CACHE MANIFEST
-# Time: Mon Jul 27 2015 22:09:40 GMT-0500 (CDT)
+# Time: Sun Sep 27 2015 18:34:47 GMT-0400 (EDT)
 
 
 CACHE:
-http://fonts.googleapis.com/css?family=Source+Code+Pro&subset=latin,latin-ext
-http://fonts.gstatic.com/s/sourcecodepro/v6/mrl8jkM18OlOQN8JLgasDy2Q8seG17bfDXYR_jUsrzg.woff2
-http://fonts.gstatic.com/s/sourcecodepro/v6/mrl8jkM18OlOQN8JLgasD9V_2ngZ8dMf8fLgjYEouxg.woff2
+CNAME
 amma.css
 amma.js
 favicon.ico

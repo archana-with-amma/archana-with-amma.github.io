@@ -1,72 +1,83 @@
 <div full-cover-image="img/feet.jpg" ng-hide="state === 'end'"
-  ng-swipe-left="next($event);" ng-swipe-right="prev($event);" ng-click="next($event);"></div>
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" ng-init="isCollapsed = true"
-                    ng-click="isCollapsed = !isCollapsed">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-        <div class="collapse navbar-collapse" collapse="isCollapsed" ng-class="!isCollapsed && 'in'" >
-            <ul class="nav navbar-nav" ng-click="isCollapsed=true" >
-                <li>
-                <a ng-click="home()">{{title}}</a>
-                </li>
-                <li ng-if="!mobile">
-                    <a ng-click="left=!left">Toggle Righty mode</a>
-                </li>
-                <li>
-                    <a ng-click="toggleMeaning()">Toggle Meaning</a>
-                </li>
-              </ul>
-              <form class="navbar-form navbar-left" role="search"
-                ng-submit="jumpTo(jumpto)">
-                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Jump to
-                  #" ng-model="jumpto">
-                </div>
-                <button type="submit" class="btn btn-default">Submit</button>
-              </form>
+  ng-swipe-left="next($event);" ng-swipe-right="prev($event);" ng-click="console.log('sup')"></div>
+    <div class="navmenu navmenu-default navmenu-fixed-left offcanvas">
+      <a class="navmenu-brand" ng-click="home()">{{title()}}</a>
 
-        </div>
+          <div class="checkbox checkbox-slider--c checkbox-slider-lg">
+            <label ng-if="!mobile">
+              <input type="checkbox" ng-model="settings.layoutSide" ng-true-value="'Right'" ng-false-value="'Left'"><span>{{settings.layoutSide}} Handed</span>
+            </label>
+          </div>
+
+          <div class="checkbox checkbox-slider--c-weight checkbox-slider-lg">
+            <label>
+              <input type="checkbox" ng-model="settings.meaning" ng-true-value="'On'" ng-false-value="'Off'"><span>Meaning {{settings.meaning}}</span>
+            </label>
+          </div>
+
+          <div class="checkbox checkbox-slider--c-weight checkbox-slider-lg">
+            <label>
+              <input type="checkbox" ng-model="settings.audio" ng-true-value="'On'" ng-false-value="'Off'" ><span>Audio Controls {{settings.audio}}</span>
+            </label>
+          </div>
+
+          <div class="checkbox checkbox-slider--c-weight checkbox-slider-lg">
+            <label>
+              <input type="checkbox" ng-model="settings.autoplay" ng-true-value="'On'" ng-false-value="'Off'" ng-change="updateAudioSettings()"><span>Autoplay Audio {{settings.autoplay}}</span>
+            </label>
+          </div>
+          <label>Audio Playback rate</label>
+          <rzslider rz-slider-precision="2" rz-slider-floor=".5" rz-slider-ceil="3" rz-slider-step="0.1" rz-slider-model="settings.audioPlaybackRate" rz-slider-on-end="updateAudioSettings()"></rzslider>
+
+
+
     </div>
+
+    <div class="navbar navbar-default navbar-fixed-top" >
+      <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body" >
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+<div ng-swipe-left="next($event);" ng-swipe-right="prev($event);" ng-click="next($event);" class="fluid-row clearfix" >
+  <div class="col-xs-12">
+    <div class="text-center answer" >
+      <h3 ng-style="getColor()" ng-bind-html="verse()" ></h3>
+      <h4 ng-if="settings.meaning == 'On'" ng-bind-html="meaning()"></h4>
+    </div>
+  </div>
 </div>
 
-
-<div ng-swipe-left="next($event);" ng-swipe-right="prev($event);" ng-click="next($event);" >
-    <div class="row clearfix">
-        <div class="col-md-12" >
-            <div class="text-center answer" >
-                <!-- animate-on-change="verse()" -->
-                <h3 ng-style="getColor()" class="slide-and-fade-up"  ng-bind-html="verse()" ></h3>
-                <h4 ng-if="displayMeaning === true" ng-bind-html="meaning()"></h4>
-            </div>
-        </div>
-    </div>
-</div>
-<audio id="verseAudio" ng-src="{{getAudioSegmentSrc()}}" preload="auto" autoplay="autoplay"></audio>
+<audio id="verseAudio" ng-src="{{getAudioSegmentSrc()}}" preload="auto" ></audio>
 
 <!-- Answer Buttons -->
+<div class="fluid-row clearfix above-fixed-footer" ng-if="settings.audio == 'On'">
+  <div class="col-xs-6">
+    <button type="button" class="btn btn-lg btn-outline" ng-click="playAudio()">Play</button>
+  </div>
 
-<div class="row clearfix fixed-footer" ng-if="!mobile">
-  <div ng-if="!left" ng-init="left=false">
-    <div class="col-xs-6" ng-if="state === 'show'">
-        <button type="button" class="btn btn-lg btn-outline" ng-click="next($event);">Next</button>
+</div>
+
+<div class="fluid-row clearfix fixed-footer" >
+  <div ng-if="!mobile">
+    <div ng-if="settings.layoutSide == 'Left'">
+      <div class="col-xs-6" ng-if="state === 'show'">
+          <button type="button" class="btn btn-lg btn-outline" ng-click="next($event);">Next</button>
+      </div>
+      <div class="col-xs-6" ng-if="state === 'show'">
+          <button type="button" class="btn btn-lg btn-outline" ng-click="prev($event);">Back</button>
+      </div>
     </div>
-    <div class="col-xs-6" ng-if="state === 'show'">
-        <button type="button" class="btn btn-lg btn-outline" ng-click="prev($event);">Back</button>
+    <div ng-if="settings.layoutSide == 'Right'">
+      <div class="col-xs-6" ng-if="state === 'show'">
+          <button type="button" class="btn btn-lg btn-outline" ng-click="prev($event);">Back</button>
+      </div>
+      <div class="col-xs-6" ng-if="state === 'show'">
+          <button type="button" class="btn btn-lg btn-outline" ng-click="next($event);">Next</button>
+      </div>
     </div>
   </div>
-  <div ng-if="left">
-    <div class="col-xs-6" ng-if="state === 'show'">
-        <button type="button" class="btn btn-lg btn-outline" ng-click="prev($event);">Back</button>
-    </div>
-    <div class="col-xs-6" ng-if="state === 'show'">
-        <button type="button" class="btn btn-lg btn-outline" ng-click="next($event);">Next</button>
-    </div>
-  </div>
+
 </div>
