@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Time: Sun Sep 27 2015 19:30:46 GMT-0400 (EDT)
+# Time: Sun Sep 27 2015 19:45:26 GMT-0400 (EDT)
 
 
 CACHE:
@@ -9,17 +9,6 @@ amma.js
 favicon.ico
 index.html
 lib.js
-audio/1000.mp3
-audio/108.json
-audio/108.mp3
-learn/1000-stotram.json
-learn/1000.json
-learn/108.json
-learn/arati.json
-learn/index.json
-learn/sri-mahisasuramardini-stotram.json
-learn/test.json
-learn/test2.json
 img/1000-stotram.jpg
 img/1000.jpg
 img/108-english.jpg
@@ -32,6 +21,14 @@ img/durga.jpg
 img/feet.jpg
 img/flower-bg.jpg
 img/pada-puja.jpg
+learn/1000-stotram.json
+learn/1000.json
+learn/108.json
+learn/arati.json
+learn/index.json
+learn/sri-mahisasuramardini-stotram.json
+learn/test.json
+learn/test2.json
 templates/howto.template.html
 templates/item-lister.template.html
 templates/learn.template.html
