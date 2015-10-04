@@ -525,6 +525,7 @@ app.controller("LearnCtrl", function($scope, VerseHandler, VerseLocalStorage, mo
   }
   VerseHandler.reload();
   $scope.VerseHandler = VerseHandler;
+  $scope.hasAudio = true;
   History.restore();
   colors = History.colors();
   $scope.bg = "img/feet.jpg";
