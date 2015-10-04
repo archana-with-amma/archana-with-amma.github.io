@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Time: Sun Oct 04 2015 05:22:55 GMT-0400 (EDT)
+# Time: Sun Oct 04 2015 05:25:13 GMT-0400 (EDT)
 
 
 CACHE:
@@ -9,6 +9,11 @@ amma.js
 favicon.ico
 index.html
 lib.js
+fonts/glyphicons-halflings-regular.eot
+fonts/glyphicons-halflings-regular.svg
+fonts/glyphicons-halflings-regular.ttf
+fonts/glyphicons-halflings-regular.woff
+fonts/glyphicons-halflings-regular.woff2
 img/1000-stotram.jpg
 img/1000.jpg
 img/108-english.jpg
