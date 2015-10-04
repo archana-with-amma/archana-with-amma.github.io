@@ -502,7 +502,7 @@ app.controller("HowtoCtrl", [
 ]);
 
 app.controller("LearnCtrl", function($scope, VerseHandler, VerseLocalStorage, mobile, hotkeys, History, $location) {
-  var colors, storage, toggle;
+  var colors, storage;
   $scope.bg = "img/feet.jpg";
   $scope.mobile = mobile;
   $scope.displayMeaning = false;
@@ -510,7 +510,7 @@ app.controller("LearnCtrl", function($scope, VerseHandler, VerseLocalStorage, mo
   $scope.settings = {
     layoutSide: "Right",
     meaning: "Off",
-    audio: "On",
+    audio: (VerseHandler.audioURL != null) ? "On" : "Off",
     autoplay: "Off",
     audioPlaybackRate: 1.0
   };
@@ -524,17 +524,8 @@ app.controller("LearnCtrl", function($scope, VerseHandler, VerseLocalStorage, mo
   };
   storage = VerseLocalStorage.getState();
   VerseHandler.reload();
-  $scope.getPosition = function() {
-    return VerseHandler.getPosition();
-  };
-  $scope.setPosition = function(t) {
-    debugger;
-  };
   History.restore();
   colors = History.colors();
-  toggle = function(item, state1, state2) {
-    return item = item !== state1 ? state1 : state2;
-  };
   $scope.playAudio = function($event) {
     var x;
     $event.stopPropagation();
@@ -545,11 +536,6 @@ app.controller("LearnCtrl", function($scope, VerseHandler, VerseLocalStorage, mo
   };
   $scope.home = function() {
     return $location.path("/");
-  };
-  $scope.jumpTo = function(location) {
-    location = parseInt(location);
-    VerseHandler.setPosition(location);
-    return $scope.isCollapsed = true;
   };
   $scope.getColor = function() {
     return {

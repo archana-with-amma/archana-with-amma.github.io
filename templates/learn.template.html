@@ -20,9 +20,9 @@ ng-swipe-left="next($event);" ng-swipe-right="prev($event);" ng-click="next($eve
 
       <div class="container" >
         <div class="row-fluid">
-          <div class="col-md-4">
+          <!-- <div class="col-md-4"> -->
             <input class="btn btn-danger" type="reset" value="Reset" ng-click="VerseHandler.state.currentPosition = 0">
-          </div>
+          <!-- </div> -->
           
         </div>
         <div class="row-fluid">
@@ -61,7 +61,7 @@ ng-swipe-left="next($event);" ng-swipe-right="prev($event);" ng-click="next($eve
         <div class="row-fluid"> 
           <div class="col-md-6">
             <label>Audio Playback rate</label>
-            <input type="number" max="3" min="0.3" step=".1" value="{{settings.audioPlaybackRate}}" ng-model="settings.audioPlaybackRate">    
+            <input type="number" max="3" min="0.3" step=".1" value="{{settings.audioPlaybackRate}}" ng-model="settings.audioPlaybackRate" ng-change="updateAudioSettings()">    
           </div>
         </div>
         <div class="row-fluid"> 
