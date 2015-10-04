@@ -535,11 +535,13 @@ app.controller("LearnCtrl", function($scope, VerseHandler, VerseLocalStorage, mo
   toggle = function(item, state1, state2) {
     return item = item !== state1 ? state1 : state2;
   };
-  $scope.playAudio = function() {
+  $scope.playAudio = function($event) {
     var x;
+    $event.stopPropagation();
     x = $("audio")[0];
     x.load();
-    return x.play();
+    x.play();
+    return false;
   };
   $scope.home = function() {
     return $location.path("/");
