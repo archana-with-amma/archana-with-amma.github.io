@@ -41,7 +41,7 @@ ng-swipe-left="next($event);" ng-swipe-right="prev($event);" ng-click="next($eve
             </div>
           </div>
         </div>
-        <div class="row-fluid clearfix" ng-if="hasAudio">
+        <div class="row-fluid clearfix" ng-if="true">
           <div class="col-md-6">
             <div class="checkbox checkbox-slider--c-weight checkbox-slider-lg">
               <label>
@@ -59,7 +59,7 @@ ng-swipe-left="next($event);" ng-swipe-right="prev($event);" ng-click="next($eve
         </div>
 
         <div class="row-fluid clearfix"> 
-          <div class="col-md-6" ng-if="hasAudio">
+          <div class="col-md-6" ng-if="true">
             <label>Audio Playback rate</label>
             <input type="number" max="3" min="0.3" step=".1" value="{{settings.audioPlaybackRate}}" ng-model="settings.audioPlaybackRate" ng-change="updateAudioSettings()">    
           </div>
