@@ -53,7 +53,7 @@ ng-swipe-left="next($event);" ng-swipe-right="prev($event);" ng-click="next($eve
             <div class="col-sm-6">
               <div class="checkbox checkbox-slider--c-weight checkbox-slider-lg">
                 <label>
-                  <input type="checkbox" ng-model="storage.autoplay" ng-true-value="'On'" ng-false-value="'Off'" rz-slider-on-change="updateAudioSettings()"><span>Autoplay Audio {{storage.autoplay}}</span>
+                  <input type="checkbox" ng-model="storage.autoplay" ng-true-value="'On'" ng-false-value="'Off'" ng-change="updateAudioSettings()"><span>Autoplay Audio {{storage.autoplay}}</span>
                 </label>
               </div>
             </div>
@@ -64,7 +64,7 @@ ng-swipe-left="next($event);" ng-swipe-right="prev($event);" ng-click="next($eve
           <div class="col-sm-6" ng-if="storage.hasAudio">
             <label>Audio Playback rate</label>
             <input type="number" max="3" min="0.3" step=".1" value="{{storage.audioPlaybackRate}}" ng-model="storage.audioPlaybackRate" ng-change="updateAudioSettings()">
-            <rzslider rz-slider-model="storage.audioPlaybackRate" rz-slider-ceil="3" rz-slider-floor=".4" rz-slider-step=".1" rz-slider-precision="1" ng-change="updateAudioSettings()"></rzslider>
+            <rzslider rz-slider-model="storage.audioPlaybackRate" rz-slider-ceil="3" rz-slider-floor=".4" rz-slider-step=".1" rz-slider-precision="1" rz-slider-on-change="updateAudioSettings()"></rzslider>
           </div>
         </div>
         <div class="row-fluid"> 
