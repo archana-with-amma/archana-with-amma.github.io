@@ -149,7 +149,7 @@ app.service("VerseHandler", function(LocalVerseData, VerseLocalStorage, $q) {
         _this.meanings = data.listOfMeaning;
         _this.title = data.title;
         _this.max = Object.keys(_this.verses).length - 1;
-        _this.audioURL = data.audioURL ? data.audioURL + "#t=" : null;
+        _this.audioURL = data.audioURL;
         audioDefered.resolve(data.audioURL !== void 0);
         _this.audioTimes = data.audioTimes;
         if (_this.state.currentPosition === _this.max) {
@@ -203,8 +203,8 @@ app.service("VerseHandler", function(LocalVerseData, VerseLocalStorage, $q) {
       return this.audioURL + time;
     }
   };
-  this.getAudioSegmentTime = function() {
-    return this.audioTimes[this.state.currentPosition];
+  this.getAudioSegmentTimes = function() {
+    return this.audioTimes[this.state.currentPosition].split(",");
   };
   this.peekNextVerse = function() {
     if (this.hasNext()) {
@@ -514,7 +514,7 @@ app.controller("HowtoCtrl", [
 ]);
 
 app.controller("LearnCtrl", function($scope, VerseHandler, VerseLocalStorage, mobile, hotkeys, History, $location) {
-  var audio, colors, defaults, k, ref, storage, v;
+  var audio, audioTimeout, colors, defaults, k, ref, resetAudio, storage, v;
   defaults = {
     audioPlaybackRate: 1,
     layoutSide: "Right",
@@ -532,20 +532,38 @@ app.controller("LearnCtrl", function($scope, VerseHandler, VerseLocalStorage, mo
   VerseHandler.reload();
   $scope.VerseHandler = VerseHandler;
   $scope.hasAudio = true;
+  VerseHandler.hasAudio().then(function(hasAudio) {
+    $scope.hasAudio = hasAudio;
+    storage.audio = hasAudio ? "On" : "Off";
+    return console.log("hasAudio", hasAudio, storage.audio);
+  });
   History.restore();
   colors = History.colors();
   $scope.bg = "img/feet.jpg";
   $scope.mobile = mobile;
   audio = $("audio")[0];
+  audioTimeout = void 0;
   audio.defaultPlaybackRate = $scope.settings.audioPlaybackRate;
   $scope.updateAudioSettings = function() {
-    audio.defaultPlaybackRate = $scope.settings.audioPlaybackRate;
-    return audio.autoplay = $scope.settings.autoplay === "On";
+    return audio.defaultPlaybackRate = $scope.settings.audioPlaybackRate;
+  };
+  resetAudio = function() {
+    if (!audio.paused) {
+      clearTimeout(audioTimeout);
+      audio.pause();
+    }
   };
   $scope.playAudio = function($event) {
+    var ref1, ref2, start, stop;
     $event.stopPropagation();
-    audio.load();
+    resetAudio();
+    ref1 = VerseHandler.getAudioSegmentTimes(), start = ref1[0], stop = ref1[1];
+    ref2 = [parseFloat(start), parseFloat(stop)], start = ref2[0], stop = ref2[1];
+    audio.currentTime = start;
     audio.play();
+    audioTimeout = setTimeout(function() {
+      return audio.pause();
+    }, (stop - start) * audio.defaultPlaybackRate * 1000);
     return false;
   };
   $scope.home = function() {
@@ -567,12 +585,20 @@ app.controller("LearnCtrl", function($scope, VerseHandler, VerseLocalStorage, mo
   };
   $scope.next = function($event) {
     $event.stopPropagation();
+    resetAudio();
     VerseHandler.next();
+    if ($scope.settings.autoplay === "On") {
+      $scope.playAudio($event);
+    }
     return false;
   };
   $scope.prev = function($event) {
     $event.stopPropagation();
+    resetAudio();
     VerseHandler.prev();
+    if ($scope.settings.autoplay === "On") {
+      $scope.playAudio($event);
+    }
     return false;
   };
   $scope.getAudioSegmentSrc = function() {

@@ -85,7 +85,7 @@ ng-swipe-left="next($event);" ng-swipe-right="prev($event);" ng-click="next($eve
   </div>
 </div>
 
-<audio id="verseAudio" ng-src="{{getAudioSegmentSrc()}}"  ></audio>
+<audio id="verseAudio" ng-src="{{VerseHandler.audioURL}}" preload="none" ></audio>
 
 <div class="fluid-row clearfix fixed-footer" ng-if="!mobile || settings.audio == 'On'">
   <div ng-if="!mobile" ng-swipe-left="next($event);" ng-swipe-right="prev($event);" ng-click="next($event);">
