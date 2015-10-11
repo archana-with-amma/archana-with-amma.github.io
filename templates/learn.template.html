@@ -90,7 +90,7 @@ ng-swipe-left="next($event);" ng-swipe-right="prev($event);" ng-click="next($eve
   </div>
 </div>
 
-<audio id="audioPlayer" ng-src="{{VerseHandler.audioURL}}" ></audio>
+<audio id="audioPlayer" ng-src="{{VerseHandler.audioURL}}" preload="auto" ></audio>
 
 <div class="fluid-row clearfix fixed-footer" ng-if="!mobile || storage.audio == 'On'">
   <div ng-if="!mobile" ng-swipe-left="next($event);" ng-swipe-right="prev($event);" ng-click="next($event);">
