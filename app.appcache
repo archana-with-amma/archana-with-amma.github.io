@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Time: Sun Oct 04 2015 21:13:20 GMT-0400 (EDT)
+# Time: Sun Oct 11 2015 08:01:59 GMT-0400 (EDT)
 
 
 CACHE:
@@ -14,6 +14,18 @@ fonts/glyphicons-halflings-regular.svg
 fonts/glyphicons-halflings-regular.ttf
 fonts/glyphicons-halflings-regular.woff
 fonts/glyphicons-halflings-regular.woff2
+img/1000-stotram.jpg
+img/1000.jpg
+img/108-english.jpg
+img/arati.jpg
+img/arati2.jpg
+img/blessing.jpg
+img/cover-smile.jpg
+img/creator.jpg
+img/durga.jpg
+img/feet.jpg
+img/flower-bg.jpg
+img/pada-puja.jpg
 learn/1000-stotram.json
 learn/1000.json
 learn/108.json
@@ -27,18 +39,6 @@ templates/item-lister.template.html
 templates/learn.template.html
 templates/results.template.html
 templates/test.template.html
-img/1000-stotram.jpg
-img/1000.jpg
-img/108-english.jpg
-img/arati.jpg
-img/arati2.jpg
-img/blessing.jpg
-img/cover-smile.jpg
-img/creator.jpg
-img/durga.jpg
-img/feet.jpg
-img/flower-bg.jpg
-img/pada-puja.jpg
 
 
 NETWORK:

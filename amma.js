@@ -139,7 +139,11 @@ app.service("VerseHandler", function(LocalVerseData, VerseLocalStorage, $q) {
   audioDefered = $q.defer();
   this.reload = function() {
     LocalVerseData.reload();
-    LocalVerseData.verses.then((function(_this) {
+    this.state = VerseLocalStorage.getState();
+    if (this.state.currentPosition == null) {
+      this.state.currentPosition = 0;
+    }
+    return LocalVerseData.verses.then((function(_this) {
       return function(data) {
         _this.verses = data.listToLearn;
         _this.meanings = data.listOfMeaning;
@@ -148,12 +152,11 @@ app.service("VerseHandler", function(LocalVerseData, VerseLocalStorage, $q) {
         _this.audioURL = data.audioURL ? data.audioURL + "#t=" : null;
         audioDefered.resolve(data.audioURL !== void 0);
         _this.audioTimes = data.audioTimes;
+        if (_this.state.currentPosition === _this.max) {
+          _this.state.currentPosition = 0;
+        }
       };
     })(this));
-    this.state = VerseLocalStorage.getState();
-    if (this.state.currentPosition == null) {
-      return this.state.currentPosition = 0;
-    }
   };
   this.hasAudio = function() {
     return audioDefered.promise;
@@ -199,6 +202,9 @@ app.service("VerseHandler", function(LocalVerseData, VerseLocalStorage, $q) {
       time = this.audioTimes[this.state.currentPosition];
       return this.audioURL + time;
     }
+  };
+  this.getAudioSegmentTime = function() {
+    return this.audioTimes[this.state.currentPosition];
   };
   this.peekNextVerse = function() {
     if (this.hasNext()) {
@@ -508,7 +514,7 @@ app.controller("HowtoCtrl", [
 ]);
 
 app.controller("LearnCtrl", function($scope, VerseHandler, VerseLocalStorage, mobile, hotkeys, History, $location) {
-  var colors, defaults, k, ref, storage, v;
+  var audio, colors, defaults, k, ref, storage, v;
   defaults = {
     audioPlaybackRate: 1,
     layoutSide: "Right",
@@ -530,19 +536,16 @@ app.controller("LearnCtrl", function($scope, VerseHandler, VerseLocalStorage, mo
   colors = History.colors();
   $scope.bg = "img/feet.jpg";
   $scope.mobile = mobile;
-  $("audio")[0].defaultPlaybackRate = $scope.settings.audioPlaybackRate;
+  audio = $("audio")[0];
+  audio.defaultPlaybackRate = $scope.settings.audioPlaybackRate;
   $scope.updateAudioSettings = function() {
-    var x;
-    x = $("audio")[0];
-    x.defaultPlaybackRate = $scope.settings.audioPlaybackRate;
-    return x.autoplay = $scope.settings.autoplay === "On";
+    audio.defaultPlaybackRate = $scope.settings.audioPlaybackRate;
+    return audio.autoplay = $scope.settings.autoplay === "On";
   };
   $scope.playAudio = function($event) {
-    var x;
     $event.stopPropagation();
-    x = $("audio")[0];
-    x.load();
-    x.play();
+    audio.load();
+    audio.play();
     return false;
   };
   $scope.home = function() {
