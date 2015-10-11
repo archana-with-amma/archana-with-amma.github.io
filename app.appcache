@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Time: Sun Oct 11 2015 18:31:42 GMT-0400 (EDT)
+# Time: Sun Oct 11 2015 18:46:18 GMT-0400 (EDT)
 
 
 CACHE:
@@ -9,6 +9,11 @@ amma.js
 favicon.ico
 index.html
 lib.js
+audio/1000.24kb.11hz.mp3
+audio/1000.mp3
+audio/1000.txt
+audio/108.json
+audio/108.mp3
 fonts/glyphicons-halflings-regular.eot
 fonts/glyphicons-halflings-regular.svg
 fonts/glyphicons-halflings-regular.ttf
