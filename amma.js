@@ -290,21 +290,19 @@ app.controller("LearnCtrl", function($scope, VerseHandler, VerseLocalStorage, mo
     audio: "On",
     hasAudio: true
   };
-  $scope.settings = {};
   audio = $("#audioPlayer")[0];
   audioTimeout = void 0;
   storage = VerseLocalStorage.getState();
+  $scope.storage = VerseLocalStorage.getState();
   for (k in defaults) {
     v = defaults[k];
     storage[k] = (ref = storage[k]) != null ? ref : v;
-    $scope.settings[k] = storage[k];
   }
   VerseHandler.reload();
   $scope.VerseHandler = VerseHandler;
   VerseHandler.hasAudio().then(function(hasAudio) {
     storage.hasAudio = hasAudio;
-    $scope.settings.hasAudio = hasAudio;
-    $scope.settings.audio = hasAudio ? "On" : "Off";
+    storage.audio = hasAudio ? "On" : "Off";
     if (hasAudio) {
       return audio.load();
     }
@@ -313,9 +311,11 @@ app.controller("LearnCtrl", function($scope, VerseHandler, VerseLocalStorage, mo
   colors = History.colors();
   $scope.bg = "img/feet.jpg";
   $scope.mobile = mobile;
-  audio.defaultPlaybackRate = $scope.settings.audioPlaybackRate;
+  audio.defaultPlaybackRate = $scope.storage.audioPlaybackRate;
   $scope.updateAudioSettings = function() {
-    return audio.defaultPlaybackRate = $scope.settings.audioPlaybackRate;
+    console.log("called");
+    audio.defaultPlaybackRate = $scope.storage.audioPlaybackRate;
+    return audio.playbackRate = $scope.storage.audioPlaybackRate;
   };
   resetAudio = function() {
     if (!audio.paused) {
@@ -325,7 +325,6 @@ app.controller("LearnCtrl", function($scope, VerseHandler, VerseLocalStorage, mo
   };
   $scope.playAudio = function($event) {
     var ref1, ref2, start, stop;
-    audio = $("#audioPlayer")[0];
     $event.stopPropagation();
     resetAudio();
     ref1 = VerseHandler.getAudioSegmentTimes(), start = ref1[0], stop = ref1[1];
@@ -364,7 +363,7 @@ app.controller("LearnCtrl", function($scope, VerseHandler, VerseLocalStorage, mo
     $event.stopPropagation();
     resetAudio();
     VerseHandler.next();
-    if ($scope.settings.autoplay === "On") {
+    if ($scope.storage.autoplay === "On") {
       $scope.playAudio($event);
     }
     return false;
@@ -373,7 +372,7 @@ app.controller("LearnCtrl", function($scope, VerseHandler, VerseLocalStorage, mo
     $event.stopPropagation();
     resetAudio();
     VerseHandler.prev();
-    if ($scope.settings.autoplay === "On") {
+    if ($scope.storage.autoplay === "On") {
       $scope.playAudio($event);
     }
     return false;
