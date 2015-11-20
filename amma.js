@@ -359,7 +359,7 @@ app.controller("LearnCtrl", function($scope, VerseHandler, VerseLocalStorage, mo
     audio.play();
     audioTimeout = setTimeout(function() {
       audio.pause();
-    }, (stop - start + 1 + .8) / audio.defaultPlaybackRate * 1000);
+    }, (stop - start + .5) / audio.defaultPlaybackRate * 1000);
     return false;
   };
   $scope.home = function() {
