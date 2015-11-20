@@ -359,7 +359,7 @@ app.controller("LearnCtrl", function($scope, VerseHandler, VerseLocalStorage, mo
     audio.play();
     audioTimeout = setTimeout(function() {
       audio.pause();
-    }, (stop - start + 200) / audio.defaultPlaybackRate * 1000);
+    }, (stop - start + 1 + .8) / audio.defaultPlaybackRate * 1000);
     return false;
   };
   $scope.home = function() {
@@ -388,10 +388,12 @@ app.controller("LearnCtrl", function($scope, VerseHandler, VerseLocalStorage, mo
   $scope.next = function($event) {
     var moved;
     $event.stopPropagation();
-    resetAudio();
     moved = VerseHandler.next();
-    if ($scope.storage.autoplay === "On" && moved) {
-      $scope.playAudio($event);
+    if (moved) {
+      resetAudio();
+      if ($scope.storage.autoplay === "On") {
+        $scope.playAudio($event);
+      }
     }
     return false;
   };

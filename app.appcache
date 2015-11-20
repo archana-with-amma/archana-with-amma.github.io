@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Time: Thu Nov 19 2015 21:36:20 GMT-0500 (EST)
+# Time: Thu Nov 19 2015 21:39:59 GMT-0500 (EST)
 
 
 CACHE:
@@ -9,6 +9,7 @@ amma.js
 favicon.ico
 index.html
 lib.js
+npm-debug.log
 audio/1000.24kb.11hz.mp3
 audio/1000.mp3
 audio/1000.txt
